@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import List from './List'
 import renderer from 'react-test-renderer'
 import Card from './Card'
+import store from './store'
 
 describe('List Component', () => {
     it('renders without crashing', () => {
@@ -13,7 +14,12 @@ describe('List Component', () => {
     
     it('renders the UI as expected', () => {
         const tree = renderer
-            .create(<List Card="Card"/>)
+            .create(
+                    <List 
+                        key={store.lists.id}
+                        header={store.lists.header}
+                        cards={store.allCards.a}
+                        />)
             .toJSON()
         expect(tree).toMatchSnapshot()
     })

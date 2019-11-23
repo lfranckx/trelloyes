@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import List from './List'
-import './App.css';
+import './App.css'
+import store from './store'
 
 class App extends Component {
   static defaultProps = {
