@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Card from './Card'
 import renderer from 'react-test-renderer'
-import { exportAllDeclaration } from '@babel/types'
 
 describe('Card Component', () => {
     it('renders without crashing', () => {
