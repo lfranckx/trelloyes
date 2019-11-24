@@ -7,10 +7,11 @@ import store from './store'
 describe('List Component', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div')
-        ReactDOM.render(<List 
-                            key={store.list[0].id}
-                            header={store.list[0].header}
-                            cards={store.list[0].cardIds.map(id => store.allCards[id])}
+        ReactDOM.render(
+                        <List 
+                            key={store.lists[0].id}
+                            header={store.lists[0].header}
+                            cards={store.lists[0].cardIds.map(id => store.allCards[id])}
                         />, 
                         div)
         ReactDOM.unmountComponentAtNode(div)
@@ -20,9 +21,9 @@ describe('List Component', () => {
         const tree = renderer
             .create(
                     <List 
-                        key={store.list[0].id}
-                        header={store.list[0].header}
-                        cards={store.list[0].cardIds.map(id => store.allCards[id])}
+                        key={store.lists[0].id}
+                        header={store.lists[0].header}
+                        cards={store.lists[0].cardIds.map(id => store.allCards[id])}
                     />)
             .toJSON()
         expect(tree).toMatchSnapshot()
