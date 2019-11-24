@@ -3,6 +3,7 @@ import Card from './Card'
 import './List.css';
 
 export default function List(props) {
+  console.log(props);
   return (
     <section className='List'>
       <header className='List-header'>

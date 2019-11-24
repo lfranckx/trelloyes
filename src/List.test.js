@@ -16,9 +16,9 @@ describe('List Component', () => {
         const tree = renderer
             .create(
                     <List 
-                        key={store.lists.id}
-                        header={store.lists.header}
-                        cards={store.allCards.a}
+                        key
+                        header
+                        cards
                         />)
             .toJSON()
         expect(tree).toMatchSnapshot()
