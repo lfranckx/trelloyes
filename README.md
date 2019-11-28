@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Requirements
+When the "delete" button is clicked on any card, remove all reference of that card from state.
+When the "add random card" button is clicked, generate a random card and add it to the state and the appropriate list.
+We've supplied a function for generating a random card to you in the resources below.
+This drill should take about one hour to complete. If you're having trouble, attend a Q&A session or reach out on Slack for help.
 
-## Available Scripts
+Hints:
 
-In the project directory, you can run:
+You'll need to refactor the App component so that it uses state for the store rather than props.
+You'll need to implement the event handlers for the buttons as methods in the App component as it has access to setState.
+You'll need to use callback props to wire up the event handlers to the onClick props of the buttons.
+You'll need to utilise the id of each list and each card when implementing the buttons.
+When deleting a card, you'll need to remove the references to that card in each list's cardIds, you can combine a map with a filter for this to generate a new lists array.
+When creating a random card you'll need to both add the card to the allCards object as well as insert the card's id into the appropriate list's cardIds.
 
-### `npm start`
+Resources:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+For the "Add Random Card" button, you can use this function to generate a random new card inside the event handler for adding to state:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+const newRandomCard = () => {
+  const id = Math.random().toString(36).substring(2, 4)
+    + Math.random().toString(36).substring(2, 4);
+  return {
+    id,
+    title: `Random Card ${id}`,
+    content: 'lorem ipsum',
+  }
+}
 
-### `npm test`
+To remove key value pairs from an object you can use the omit function below, which returns a new object:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+function omit(obj, keyToOmit) {
+  return Object.entries(obj).reduce(
+    (newObj, [key, value]) =>
+        key === keyToOmit ? newObj : {...newObj, [key]: value},
+    {}
+  );
+}
 
-### `npm run build`
+// Example
+const objectWithKVPs = {
+  key: 'value',
+  foo: 'foo value',
+  bar: 'bar value',
+  abc: { nested: 'object' }
+}
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+// To remove the foo key value pair
+const newObjectWithKVPs = omit(objectWithKVPs, 'foo');

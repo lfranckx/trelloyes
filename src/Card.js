@@ -6,6 +6,7 @@ export default function Card(props) {
     <div className='Card'>
       <button
         type='button'
+        onClick={() => props.onDeleteCard(props.id)}
       >
         delete
       </button>
@@ -13,6 +14,10 @@ export default function Card(props) {
       <p>{props.content}</p>
     </div>
   )
+}
+
+Card.propTypes = {
+  onClickDelete: () => {}
 }
 
 // The Card component should render markup matching the design.html: a div with a class of 

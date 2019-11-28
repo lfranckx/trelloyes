@@ -3,7 +3,7 @@ import Card from './Card'
 import './List.css';
 
 export default function List(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <section className='List'>
       <header className='List-header'>
@@ -13,19 +13,26 @@ export default function List(props) {
         {props.cards.map((card) =>
           <Card
             key={card.id}
+            id={card.id}
             title={card.title}
             content={card.content}
+            onDeleteCard={props.onDeleteCard}
           />
         )}
         <button
           type='button'
           className='List-add-button'
+          onClick={() => props.onAddCard(props.id)}
         >
           + Add Random Card
         </button>
       </div>
     </section>
   )
+}
+
+List.defaultProps = {
+  onClickAdd: () => {}
 }
 
 // The List component should render markup matching the design.html: 
